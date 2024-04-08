@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarpImg</title>
+    <style>
+        /* CSS for overall layout and styling */
+        html,
+        body {
+            margin: 5px;
+            padding: 0px;
+            height: 99%;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 20px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .grid-item {
+            background-color: rgb(221, 221, 221);
+            border: 1px solid rgb(80, 80, 80);
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            /* border-radius: 50% / 50%; */
+        }
+
+        .grid-item a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            overflow: hidden;
+        }
+
+        .grid-item img {
+            max-width: 2%;
+            /* Initial size of the image */
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+            /* Smooth transition for scaling */
+        }
+
+        .grid-item img:hover {
+            transform: scale(25);
+            /* Scale factor on hover */
+        }
+
+        body {
+            background-color: rgb(145, 145, 145);
+            cursor: alias;
+        }
+
+        /* CSS for the floating window */
+        .floating-window {
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            width: 45%;
+            height: 35%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 3px solid rgb(0, 0, 0);
+            z-index: 2000;
+            display: none;
+            /* Initially not displayed */
+        }
+
+        .window-header {
+            background-color: rgba(0, 0, 0, 0.247);
+            padding: 15px;
+            cursor: move;
+        }
+
+        .close-button {
+            float: middle;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 0px;
+            color: rgb(255, 255, 255);
+        }
+
+        .window-content {
+            width: 100%;
+            height: 90%;
+            border: none;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .fade-out {
+            animation-name: fadeOut;
+            animation-duration: 25s;
+            animation-fill-mode: forwards;
+            transition: ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Mesonephros" target="_blank">
+                <img src="Img/A The transverse of mesonephros.png" alt="A The transverse of mesonephros">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Mast_cell" target="_blank">
+                <img src="Img/Mass Cell.png" alt="Mass Cell">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Stratified_squamous_epithelium" target="_blank">
+                <img src="Img/Stratified squamous epithelium.png" alt="Stratified squamous epithelium">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Dense_connective_tissue" target="_blank">
+                <img src="Img/The dense connective tissue.png" alt="The dense connective tissue">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Transverse_abdominal_muscle" target="_blank">
+                <img src="Img/The transverse of abdominal skin1.png" alt="The transverse of abdominal skin1">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Transverse_abdominal_muscle" target="_blank">
+                <img src="Img/The transverse of abdominal skin2.png" alt="The transverse of abdominal skin2">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Duodenum" target="_blank">
+                <img src="Img/The transverse of anterior intestine.png" alt="The transverse of anterior intestine">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Gill" target="_blank">
+                <img src="Img/The transverse of gill small piece.png" alt="The transverse of gill small piece">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Hepatopancreas" target="_blank">
+                <img src="Img/The transverse of hepatopancreas.png" alt="The transverse of hepatopancreas">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Hepatopancreas" target="_blank">
+                <img src="Img/The transverse of hepatopancreas.png" alt="The transverse of hepatopancreas">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Gastrointestinal_tract" target="_blank">
+                <img src="Img/The transverse of intestinal tract.png" alt="The transverse of intestinal tract">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Lip" target="_blank">
+                <img src="Img/The transverse of lower lip.png" alt="The transverse of lower lip">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Mesonephros" target="_blank">
+                <img src="Img/The transverse of mesonephros.png" alt="The transverse of mesonephros">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Eustachian_tube" target="_blank">
+                <img src="Img/The transverse of pharyngotympanic cavity.png"
+                    alt="The transverse of pharyngotympanic cavity">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Skin" target="_blank">
+                <img src="Img/The transverse of skin.png" alt="The transverse of skin">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Spleen" target="_blank">
+                <img src="Img/The transverse of spleen.png" alt="The transverse of spleen">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Mandible" target="_blank">
+                <img src="Img/The transverse of submaxilla.png" alt="The transverse of submaxilla">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Lip" target="_blank">
+                <img src="Img/The transverse of upper lip.png" alt="The transverse of upper lip">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Dense_connective_tissue" target="_blank">
+                <img src="Img/The transverse of urano-skin.png" alt="The transverse of urano-skin">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://en.wikipedia.org/wiki/Spinal_cord" target="_blank">
+                <img src="Img/The transverse of spinal cord.png" alt="The transverse of spinal cord">
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var gridItems = document.querySelectorAll('.grid-item');
+
+            gridItems.forEach(function (item) {
+                var img = item.querySelector('img');
+                var currentX = 0;
+                var currentY = 0;
+                var currentScale = 1; // Initial scale ratio
+                var animationId; // To hold the animation interval ID
+
+                // Function to start the animation
+                function startAnimation() {
+                    var stepX = (Math.random() - 0.5) * 5;
+                    var stepY = (Math.random() - 0.5) * 5;
+
+                    animationId = setInterval(function () {
+                        var a = item.clientWidth / 2;
+                        var b = item.clientHeight / 2;
+
+                        var nextX = currentX + stepX;
+                        var nextY = currentY + stepY;
+
+                        if ((nextX / a) ** 2 + (nextY / b) ** 2 >= 1) {
+                            if ((nextX / a) ** 2 + (currentY / b) ** 2 > 1) stepX = -stepX;
+                            if ((currentX / a) ** 2 + (nextY / b) ** 2 > 1) stepY = -stepY;
+                        } else {
+                            currentX = nextX;
+                            currentY = nextY;
+                        }
+
+                        img.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+                    }, 500);
+                }
+
+                // Function to stop the animation
+                function stopAnimation() {
+                    clearInterval(animationId);
+                }
+
+                startAnimation(); // Start the animation initially
+
+                img.addEventListener('mouseover', function () {
+                    stopAnimation(); // Stop animation on hover
+                    currentScale = 25;
+                    img.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+                });
+
+                img.addEventListener('mouseout', function () {
+                    startAnimation(); // Resume animation when mouse leaves
+                    currentScale = 1;
+                    img.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+                });
+            });
+
+            // gif array
+            var gifs = [
+                'carp gif/1.gif',
+                'carp gif/2.gif',
+                'carp gif/3.gif.webp',
+                'carp gif/4.gif.webp',
+                'carp gif/5.webp',
+                'carp gif/6.webp',
+                'carp gif/7.webp',
+                'carp gif/8.webp',
+                'carp gif/9.webp',
+                'carp gif/10.webp',
+                'carp gif/11.gif',
+                'carp gif/12.gif',
+                'carp gif/13.gif',
+                'carp gif/14.webp',
+                'carp gif/15.gif',
+                'carp gif/16.gif',
+                'carp gif/17.webp',
+                'carp gif/18.webp',
+                'carp gif/19.gif.webp',
+                'carp gif/20.gif',
+                'carp gif/21.gif',
+                'carp gif/22.gif',
+                'carp gif/23.gif',
+                'carp gif/24.gif',
+                'carp gif/25.gif',
+                'carp gif/26.gif',
+                'carp gif/27.gif',
+                'carp gif/28.gif',
+                'carp gif/29.gif',
+                'carp gif/30.gif',
+                'carp gif/31.gif',
+            ];
+
+            // Function to show random number (1-2) of GIFs
+            function showRandomGifs() {
+                var numberOfGifs = Math.floor(Math.random() * 2) + 1;
+                for (var i = 0; i < numberOfGifs; i++) {
+                    var randomIndex = Math.floor(Math.random() * gifs.length);
+                    var selectedGif = gifs[randomIndex];
+                    createGifWindow(selectedGif);
+                }
+            }
+
+            // Function to create a GIF window
+            function createGifWindow(gifSrc) {
+                var gifWindow = document.createElement('div');
+                var topPosition = (window.innerHeight * 0.01) + (Math.random() * (window.innerHeight * 0.99));
+                var leftPosition = (window.innerWidth * 0.01) + (Math.random() * (window.innerWidth * 0.99));
+
+                gifWindow.style.cssText = 'position: fixed; top: ' + topPosition + 'px; left: ' + leftPosition + 'px; transform: translate(-50%, -50%); z-index: 3000;';
+
+                var gifImage = document.createElement('img');
+                gifImage.src = gifSrc;
+                gifImage.style.width = '150px';
+                gifImage.style.height = 'auto';
+
+                gifWindow.appendChild(gifImage);
+                document.body.appendChild(gifWindow);
+            }
+
+            document.body.addEventListener('click', function (event) {
+                if (!event.target.closest('.grid-item') && !event.target.closest('.floating-window')) {
+                    showRandomGifs();
+                }
+            });
+
+            // Function to create a GIF window
+            function createGifWindow(gifSrc) {
+                var gifWindow = document.createElement('div');
+                var topPosition = (window.innerHeight * 0.01) + (Math.random() * (window.innerHeight * 0.99));
+                var leftPosition = (window.innerWidth * 0.01) + (Math.random() * (window.innerWidth * 0.99));
+
+                gifWindow.style.cssText = 'position: fixed; top: ' + topPosition + 'px; left: ' + leftPosition + 'px; transform: translate(-50%, -50%); z-index: 3000;';
+
+                var gifImage = document.createElement('img');
+                gifImage.src = gifSrc;
+                gifImage.style.width = '150px';
+                gifImage.style.height = 'auto';
+
+                gifWindow.appendChild(gifImage);
+                document.body.appendChild(gifWindow);
+
+                gifWindow.classList.add('fade-out');
+
+                setTimeout(function () {
+                    console.log('Removing GIF window');
+                    gifWindow.remove();
+                }, 25000);
+            }
+
+
+            // Floating window and drag functionality
+            var zIndex = 1000; // Used for controlling the stacking order of floating windows
+            var windowOffset = 0; // Used to offset each new window
+
+            function createFloatingWindow(url) {
+                zIndex++;
+                windowOffset += 5;
+
+                var topPosition = 10 + windowOffset % 100;
+                var leftPosition = 10 + windowOffset % 100;
+
+                var floatingWindow = document.createElement('div');
+                floatingWindow.className = 'floating-window';
+                floatingWindow.style.cssText = `position: fixed; top: ${topPosition}%; left: ${leftPosition}%; width: 45%; height: 35%; background-color: rgba(255, 255, 255, 0.7); border: 3px solid rgb(0, 0, 0); z-index: ${zIndex}; display: block;`;
+
+                var windowHeader = document.createElement('div');
+                windowHeader.className = 'window-header';
+                var closeButton = document.createElement('span');
+                closeButton.className = 'close-button';
+                closeButton.innerHTML = '&times;';
+                closeButton.style.cssText = 'float: middle; cursor: pointer; font-size: 20px; line-height: 0px; color: rgb(255, 255, 255);';
+
+                var windowContent = document.createElement('iframe');
+                windowContent.className = 'window-content';
+                windowContent.style.cssText = 'width: 100%; height: 90%; border: none;';
+                windowContent.src = url;
+
+                windowHeader.appendChild(closeButton);
+                floatingWindow.appendChild(windowHeader);
+                floatingWindow.appendChild(windowContent);
+                document.body.appendChild(floatingWindow);
+
+                dragElement(floatingWindow);
+
+                closeButton.addEventListener('click', function () {
+                    floatingWindow.remove();
+                });
+            }
+
+            function dragElement(elmnt) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                if (document.getElementById(elmnt.id + "header")) {
+                    // if present, the header is where you move the DIV from:
+                    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+                } else {
+                    // otherwise, move the DIV from anywhere inside the DIV:
+                    elmnt.onmousedown = dragMouseDown;
+                }
+
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // get the mouse cursor position at startup:
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // call a function whenever the cursor moves:
+                    document.onmousemove = elementDrag;
+                }
+
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // calculate the new cursor position:
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // set the element's new position:
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                }
+
+                function closeDragElement() {
+                    // stop moving when mouse button is released:
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+
+            // Add click event to each link to open in new floating window
+            var links = document.querySelectorAll('.grid-item a');
+            links.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var href = link.getAttribute('href');
+                    createFloatingWindow(href);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
